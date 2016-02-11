@@ -1,7 +1,5 @@
 $(document).ready(function(){
    
-   $('#newTaskForm').hide();
-   
     var listo = [];
    
     var Task = function(task) {
@@ -70,7 +68,9 @@ $(document).ready(function(){
    
    //opens form
    $('#newListItem').on('click', function(){
-       $('#newTaskForm, #newListItem').fadeToggle('fast', 'linear');
+       $('#newListItem').hide();
+       $('#newTaskForm').fadeToggle('fast');
+
    });
    //closes form
    $('#cancel').on('click', function(e){
@@ -78,7 +78,41 @@ $(document).ready(function(){
        $('#newTaskForm, #newListItem').fadeToggle('fast', 'linear');
    });
    
-  
+   function storageAvailable(type) {
+       try {
+           var storage = window[type]; 
+           var x = '__storage_test__';
+           storage.setItem(x, x);
+           storage.removeItem(x);
+           return true;
+       } catch(e) {
+           return false;
+       }
+   }
+   
+    if(storageAvailable('localStorage')) {
+       console.log("storage available");
+   } else {
+       console.log('no storage available');
+   }
+//   
+//   function populateStorage() {
+//       localStorage.setItem('itemList', JSON.stringify(listo));  
+//   }
+//   
+//   function setList() {
+//       var retrievedList = localStorage.getItem('itemList');
+//       listo = JSON.parse(retrievedList);
+//       console.log(listo);
+//   }
+//   
+//   if(!localStorage.getItem('itemList')) {
+//       populateStorage();
+//   } else {
+//       setList();
+//   }
+//   
+//  
     
 });
 

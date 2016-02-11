@@ -7,28 +7,38 @@
 </head>
 <body>
     
-    <div class="new-item-header">
-        <button href="#" class="pull-right pencil" id="newListItem" style="">New</button>
-    </div>
-    
-    <form id="newTaskForm">
-        <label>New Item</label>
-        <input id="newItemInput" placeholder="new task">
-        <button id="saveNewItem">Save</button>
-        <button id="cancel">Cancel</button>
-    </form>
-    
-    <div id="newList">
-        New List
-    </div>
-    
-    <div class='panel'>
-        In progress
-        <ul class='list-group' id='currentList'></ul>
-    </div>
-    <div class='panel'>
-        Archived
-        <ul class='list-group' id='archivedList'></ul>
+    <div class='container content'>
+        <div class='top'>
+            <h1>Listo</h1>
+            <p>What do you need to do today?</p>
+        </div>
+
+        <div class='changedSpace'>
+            <div class="new-item-header">
+                <button class="btn btn-primary" id="newListItem" style="">Add A New Item</button>
+            </div>
+
+            <form id="newTaskForm">
+                <label>New Item</label>
+                <input id="newItemInput" placeholder="new task">
+                <button id="saveNewItem">Save</button>
+                <button id="cancel">Cancel</button>
+            </form>
+        </div>
+
+        <div id="newList">
+            <h3>New Items</h3>
+        </div>
+
+        <div class='panel'>
+            <h3>In Progress</h3>
+            <ul class='list-group' id='currentList'></ul>
+        </div>
+        <div class='panel'>
+            <h3>Archived</h3>
+            <ul class='list-group' id='archivedList'></ul>
+        </div>
+        
     </div>
     
     
