@@ -3,6 +3,7 @@ $(document).ready(function(){
     //Array for task objects
     var listo = [];
    
+   
    //Defines the Task object that will be stored in listo array
     var Task = function(task) {
        this.task = task;
