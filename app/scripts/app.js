@@ -1,12 +1,34 @@
 $(document).ready(function(){
-   
+    
+    //Array for task objects
     var listo = [];
    
+   //Defines the Task object that will be stored in listo array
     var Task = function(task) {
        this.task = task;
        this.id = 'new';
     };
+    
+   var addTask = function(task) {
+       if(task) {                     //cannot create blank task
+           task = new Task(task);
+           listo.push(task);
+           
+           $('#newItemInput').val('');
+           $('#newList').append('<a href="#" class="" id="item"><li class="list-group-item">' + task.task + '<span class="arrow pull-right"><i class="glyphicon glyphicon-arrow-right"></span></li></a>');
+       }
+       
+       $('#newTaskForm, #newListItem').fadeToggle('fast', 'linear');
+   };
+   
+   //Adds new task object via addTask function when save button clicked
+   $('#saveNewItem').on('click', function(e){
+       e.preventDefault();
+       var task = $('#newItemInput').val().trim();
+       addTask(task);
+   });
  
+    //allows for changes in task object Id state when clicked
    var advanceTask = function(task) {
        var modified = task.innerText.trim();
        for (var i = 0; i < listo.length; i++) {
@@ -47,25 +69,7 @@ $(document).ready(function(){
        advanceTask(task);
    });
    
- 
-   var addTask = function(task) {
-       if(task) {                     //cannot create blank task
-           task = new Task(task);
-           listo.push(task);
-           
-           $('#newItemInput').val('');
-           $('#newList').append('<a href="#" class="" id="item"><li class="list-group-item">' + task.task + '<span class="arrow pull-right"><i class="glyphicon glyphicon-arrow-right"></span></li></a>');
-       }
-       
-       $('#newTaskForm, #newListItem').fadeToggle('fast', 'linear');
-   };
 
-   $('#saveNewItem').on('click', function(e){
-       e.preventDefault();
-       var task = $('#newItemInput').val().trim();
-       addTask(task);
-   });
-   
    //opens form
    $('#newListItem').on('click', function(){
        $('#newListItem').hide();
@@ -78,6 +82,8 @@ $(document).ready(function(){
        $('#newTaskForm, #newListItem').fadeToggle('fast', 'linear');
    });
    
+   
+   // tests for available localStorage 
    function storageAvailable(type) {
        try {
            var storage = window[type]; 
@@ -95,24 +101,18 @@ $(document).ready(function(){
    } else {
        console.log('no storage available');
    }
-//   
-//   function populateStorage() {
-//       localStorage.setItem('itemList', JSON.stringify(listo));  
-//   }
-//   
-//   function setList() {
-//       var retrievedList = localStorage.getItem('itemList');
-//       listo = JSON.parse(retrievedList);
-//       console.log(listo);
-//   }
-//   
-//   if(!localStorage.getItem('itemList')) {
-//       populateStorage();
-//   } else {
-//       setList();
-//   }
-//   
-//  
+
+
+    ///storage test object and retrival// this is functional
+    var testObject = {
+        name: 'thing',
+        id: 'blah'
+    };
+    
+    localStorage.setItem('testObject', JSON.stringify(testObject));
+    var retrievedObject = localStorage.getItem('testObject');
+    
+    console.log(JSON.parse(retrievedObject));
     
 });
 
